@@ -1,7 +1,7 @@
 ---
-title: "Informe"
+title: "Informe Final"
 author: "Katherine Morales"
-date: "Sunday, August 02, 2015"
+date: "Domingo, Agosto 02, 2015"
 output: html_document
 ---
 ---
@@ -39,9 +39,9 @@ poblacion <- merge(data1,data2,by="identificador",suffixes=c("",""))
 str(poblacion)
 ```
 
-### Modelo de regresión lineal simple
-Estudiaremos la correlación entre la variable dependiente poblacion y cada una de las
-variables explicativas (numéricas).
+### Modelo de regresión lineal múltiple
+
+Estudiaremos la correlación entre la variable dependiente poblacion y cada una de las variables explicativas (numéricas).
 
 Se requiere explicar la variable `r names(poblacion)[2]` en función de los  regresores que tengan mayor correlación con nuestra variable dependiente.
 
@@ -85,7 +85,9 @@ summary(reg)
 Es decir nuestro modelo resultante estaría dado por la expresión
 $$\hat{`r substring(names(poblacion)[2],1,2)`} = `r reg$coefficients[1]` + `r reg$coefficients[2]`  \hat{`r substring(names(poblacion)[3],1,2)`}+`r reg$coefficients[3]`  \hat{`r substring(names(poblacion)[4],1,2)`} `r reg$coefficients[4]`  \hat{`r substring(names(poblacion)[7],1,2)`}$$
 
+
 ### Interpretación
+
 __Interpretación modelo:__ 
 
 _Si `r names(poblacion)[3]` se incrementa en una unidad, entonces `r names(poblacion)[2]`
@@ -99,9 +101,11 @@ _Si `r names(poblacion)[4]` se incrementa en una unidad, entonces `r names(pobla
 _Si `r names(poblacion)[7]` se incrementa en una unidad, entonces `r names(poblacion)[2]`
 `r tex <-"aumenta"; if(reg$coefficients[4]<0) (tex<-"disminuye");tex` en promedio `r abs(reg$coefficients[4])` unidades._
 
+
 __Interpretación $R^2$:__ 
 
 _El modelo de regresión lineal obtenido explica el `r paste(100*summary(reg)$r.squared,"%")` de la variabilidad total._
+
 
 
 ### Pruebas de hipótesis
@@ -161,10 +165,10 @@ datatable(data2,filter="top", options = list(
 
 ```{r, fig.align="center",fig.width=5,fig.height=4}
 #debo poner el ancho y la altura de esta imagen
-hist(residuo,15,col = "purple",border = "pink")
+hist(residuo,15,col = "red")
 mean(residuo)
 qqnorm(residuo)
-qqline(residuo,col="pink")
+qqline(residuo,col="purple")
 ```
 
 
